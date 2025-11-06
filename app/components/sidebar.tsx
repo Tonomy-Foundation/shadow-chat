@@ -164,7 +164,7 @@ export function SideBar(props: { className?: string }) {
         transition: isMobileScreen && isIOSMobile ? "none" : undefined,
       }}
     >
-      <div className={styles["sidebar-header"]}>
+      {/* <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title-container"]}>
           <div className={styles["sidebar-title"]}>{Locale.Title}</div>
           <div className={styles["sidebar-sub-title"]}>{Locale.Subtitle}</div>
@@ -172,7 +172,7 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-logo"] + " no-dark mlc-icon"}>
           <MlcIcon />
         </div>
-      </div>
+      </div> */}
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton

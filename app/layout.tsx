@@ -6,8 +6,8 @@ import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chat.webllm.ai"),
-  title: "WebLLM Chat",
+  metadataBase: new URL("https://chat.tonomy.io"),
+  title: "Tonomy Shadow Chat",
   description:
     "Chat with AI large language models running natively in your browser. Enjoy private, server-free, seamless AI conversations.",
   keywords: [
@@ -32,34 +32,34 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "WebLLM Chat",
+    title: "Tonomy Shadow Chat",
     statusBarStyle: "default",
   },
   openGraph: {
     type: "website",
-    url: "https://chat.webllm.ai",
-    title: "WebLLM Chat",
+    url: "https://chat.tonomy.io",
+    title: "Tonomy Shadow Chat Chat",
     description:
       "Chat with AI large language models running natively in your browser",
-    siteName: "WebLLM Chat",
+    siteName: "Tonomy Shadow Chat Chat",
     images: [
       {
         url: "https://chat.webllm.ai/mlc-logo.png",
         width: 360,
         height: 360,
-        alt: "WebLLM Chat - Browser-based AI conversation",
+        alt: "Tonomy Shadow Chat - Browser-based AI conversation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "WebLLM Chat",
+    title: "Tonomy Shadow Chat",
     description:
       "Chat with AI large language models running natively in your browser",
     images: ["https://chat.webllm.ai/mlc-logo.png"],
   },
   alternates: {
-    canonical: "https://chat.webllm.ai",
+    canonical: "https://chat.tonomy.io",
   },
 };
 
@@ -123,8 +123,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: "WebLLM Chat",
-              url: "https://chat.webllm.ai",
+              name: "Tonomy Shadow Chat",
+              url: "https://chat.tonomy.io",
               description:
                 "Chat with AI large language models running natively in your browser. Enjoy private, server-free, seamless AI conversations.",
               applicationCategory: "Artificial Intelligence",
