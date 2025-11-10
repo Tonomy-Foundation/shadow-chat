@@ -88,7 +88,7 @@ const TopMenuBar = () => {
             width={37}
             height={37}
           />
-          <h1 className="tonomy-main-title">Tonomy</h1>
+          <h1 className="tonomy-main-title">Tonomy Shadow Chat</h1>
         </a>
       </div>
       <div className="tonomy-time-container">

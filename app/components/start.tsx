@@ -70,9 +70,11 @@ export default function Start() {
         </div>
         <div className="text-center">
           <p className="demo-head">Tonomy Shadow Chat</p>
+          <p className="demo-secondary">A research lab project.</p>
+          <p className="demo-main">Your sovereign AI assistant.</p>
           <p className="demo-main">
-            Your sovereign AI assistant. No prompts or responses are ever sent
-            to external servers, guaranteeing your privacy.
+            No prompts or responses are ever sent to external servers,
+            guaranteeing your privacy.
           </p>
 
           <button className="console-login-button" onClick={onButtonPress}>
