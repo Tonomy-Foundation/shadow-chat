@@ -8,7 +8,7 @@ import DemoIcon from "../icons/appSwitcherIcons/demo.png";
 import LaunchpadIcon from "../icons/appSwitcherIcons/launchpad.png";
 import TonomyLogo from "../icons/appSwitcherIcons/tonomy.png";
 import FiddleArtIcon from "../icons/appSwitcherIcons/fiddleart.png";
-import CXCWorldIcon from "../icons/appSwitcherIcons/cxcworld.png"; // add new icon
+import CXCWorldIcon from "../icons/appSwitcherIcons/cxcworld.png";
 
 import "./app-switcher.scss";
 
