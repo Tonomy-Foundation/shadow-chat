@@ -12,7 +12,7 @@ import "./start.scss";
 // import { useNavigate } from "react-router-dom";
 // import useErrorStore from "../../common/stores/errorStore";
 // import { AuthContext } from "../../tonomyAppList/providers/AuthProvider";
-import BanklessLogo from "../icons/appSwitcherIcons/Bankless.png";
+import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 
 export default function Start() {
   // const { signin } = useContext(AuthContext);
@@ -62,7 +62,7 @@ export default function Start() {
       <header className="header-column">
         <div className="app-logo">
           <img
-            src={BanklessLogo.src}
+            src={ShadowLogo.src}
             alt="Tonomy Logo"
             className="tonomy-logo"
             width={80}

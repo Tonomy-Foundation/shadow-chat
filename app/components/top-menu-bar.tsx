@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import ArrowForwardIcon from "../icons/ArrowForward.svg";
-import TonomyLogo from "../icons/appSwitcherIcons/tonomy.png";
+import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 import "./top-menu-bar.scss";
 // import {
 //     AppsExternalUser,
@@ -82,7 +82,7 @@ const TopMenuBar = () => {
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <img
-            src={TonomyLogo.src}
+            src={ShadowLogo.src}
             alt="Tonomy Logo"
             className="tonomy-logo"
             width={37}
