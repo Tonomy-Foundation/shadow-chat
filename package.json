@@ -67,7 +67,7 @@
   },
   "resolutions": {
     "lint-staged/yaml": "^2.2.2",
-    "@wharfkit/antelope": "1.0.10"
+    "strip-ansi": "6.0.1"
   },
   "packageManager": "yarn@1.22.19",
   "browser": {
