@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-// import {
-//     AppsExternalUser,
-//     isErrorCode,
-//     SdkErrors,
-// } from "@tonomy/tonomy-id-sdk";
+import {
+  AppsExternalUser,
+  isErrorCode,
+  SdkErrors,
+} from "@tonomy/tonomy-id-sdk";
 // import settings from "../../common/settings";
 import "./start.scss";
 // import { TP, TH2 } from "../../common/atoms/THeadings";
@@ -51,10 +51,10 @@ export default function Start() {
   // }, []);
 
   async function onButtonPress() {
-    // AppsExternalUser.loginWithTonomy({
-    //     callbackPath: "/callback?page=bankless",
-    //     dataRequest: { username: true },
-    // });
+    AppsExternalUser.loginWithTonomy({
+      callbackPath: "/callback",
+      dataRequest: { username: true },
+    });
   }
 
   return (
