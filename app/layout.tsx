@@ -4,6 +4,7 @@ import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
+import TopMenuBar from "./components/top-menu-bar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chat.tonomy.io"),
@@ -142,7 +143,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <div
+          style={{ display: "flex", flexDirection: "column", height: "100vh" }}
+        >
+          <TopMenuBar />
+          <div style={{ flex: 1 }}>{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

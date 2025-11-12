@@ -73,11 +73,13 @@ const TopMenuBar = () => {
     // });
   }
 
+  const origin = typeof window !== "undefined" ? window.location.origin : "/";
+
   return (
     <div className="tonomy-header">
       <div className="tonomy-title">
         <a
-          href={window.location.origin}
+          href={origin}
           className="tonomy-title"
           style={{ textDecoration: "none", color: "inherit" }}
         >

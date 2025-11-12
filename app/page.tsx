@@ -1,6 +1,7 @@
 "use client";
 
-// import { Home } from "./components/home";
+import { Home } from "./components/home";
+import Callback from "./components/callback";
 import { setSettings } from "@tonomy/tonomy-id-sdk";
 import Start from "./components/start";
 import TopMenuBar from "./components/top-menu-bar";
@@ -20,12 +21,5 @@ setSettings({
 });
 
 export default function App() {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <TopMenuBar />
-      <div style={{ flex: 1 }}>
-        <Start />
-      </div>
-    </div>
-  );
+  return <Start />;
 }
