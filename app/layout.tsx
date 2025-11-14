@@ -5,6 +5,7 @@ import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
 import TopMenuBar from "./components/top-menu-bar";
+import { AuthProvider } from "./auth-context";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chat.tonomy.io"),
@@ -144,12 +145,18 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div
-          style={{ display: "flex", flexDirection: "column", height: "100vh" }}
-        >
-          <TopMenuBar />
-          <div style={{ flex: 1 }}>{children}</div>
-        </div>
+        <AuthProvider>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100vh",
+            }}
+          >
+            <TopMenuBar />
+            <div style={{ flex: 1 }}>{children}</div>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

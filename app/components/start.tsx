@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   AppsExternalUser,
   isErrorCode,
@@ -8,13 +8,23 @@ import {
 } from "@tonomy/tonomy-id-sdk";
 // import settings from "../../common/settings";
 import "./start.scss";
-// import { TP, TH2 } from "../../common/atoms/THeadings";
 // import { useNavigate } from "react-router-dom";
 // import useErrorStore from "../../common/stores/errorStore";
 // import { AuthContext } from "../../tonomyAppList/providers/AuthProvider";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../auth-context";
+import "../tonomy-settings";
 
 export default function Start() {
+  const router = useRouter();
+  const { loggedIn } = useAuth();
+  useEffect(() => {
+    if (loggedIn) {
+      // Already logged in, send to home
+      router.replace("/");
+    }
+  }, [loggedIn, router]);
   // const { signin } = useContext(AuthContext);
   // const [loading, setLoading] = useState(true);
   // const navigation = useNavigate();
