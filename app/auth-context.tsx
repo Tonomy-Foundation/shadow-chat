@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  AppsExternalUser,
-  isErrorCode,
-  SdkErrors,
-} from "@tonomy/tonomy-id-sdk";
+import { ExternalUser, isErrorCode, SdkErrors } from "@tonomy/tonomy-id-sdk";
 import React, {
   createContext,
   useCallback,
@@ -62,7 +58,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initializeOnStart = async () => {
       try {
-        const user = await AppsExternalUser.getUser({ autoLogout: false });
+        const user = await ExternalUser.getUser({ autoLogout: false });
         if (cancelled) return;
         if (user) {
           login();
@@ -79,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         ) {
           logout();
         } else {
-          console.error(e);
+          console.error("initializeOnStart() error:", e);
         }
       } finally {
         if (!cancelled) setReady(true);

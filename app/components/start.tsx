@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { AppsExternalUser } from "@tonomy/tonomy-id-sdk";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 import "./start.scss";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 // import { useRouter } from "next/navigation";
@@ -18,10 +18,14 @@ export default function Start() {
   // }, [loggedIn, router]);
 
   async function onButtonPress() {
-    AppsExternalUser.loginWithTonomy({
-      callbackPath: "/callback",
-      dataRequest: { username: true },
-    });
+    try {
+      ExternalUser.loginWithTonomy({
+        callbackPath: "/callback",
+        dataRequest: { username: true },
+      });
+    } catch (e) {
+      console.error("onButtonPress() error", e);
+    }
   }
 
   return (

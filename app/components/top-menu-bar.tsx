@@ -5,7 +5,6 @@ import ArrowForwardIcon from "../icons/ArrowForward.svg";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 import "./top-menu-bar.scss";
 // import {
-//     AppsExternalUser,
 //     ExternalUser,
 //     isErrorCode,
 //     SdkErrors,
@@ -31,7 +30,7 @@ const TopMenuBar = () => {
   // useEffect(() => {
   //     async function authentication() {
   //         try {
-  //             const externalUser = await AppsExternalUser.getUser({
+  //             const externalUser = await ExternalUser.getUser({
   //                 autoLogout: false,
   //             });
   //             debug("externalUser", externalUser);

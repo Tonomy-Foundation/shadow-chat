@@ -2,9 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { AppsExternalUser } from "@tonomy/tonomy-id-sdk";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 import { useAuth } from "../auth-context";
-import "../tonomy-settings";
 
 export default function Callback() {
   const router = useRouter();
@@ -14,21 +13,21 @@ export default function Callback() {
     let cancelled = false;
     async function finalize() {
       try {
-        const user = await AppsExternalUser.getUser({ autoLogout: false });
+        const { user } = await ExternalUser.verifyLoginResponse();
         if (!cancelled) {
           if (user) {
             login();
-            router.replace("/");
           } else {
             logout();
-            router.replace("/");
           }
         }
-      } catch (_) {
+      } catch (e) {
+        console.error("Callback() error:", e);
         if (!cancelled) {
           logout();
-          router.replace("/");
         }
+      } finally {
+        router.replace("/");
       }
     }
     finalize();
