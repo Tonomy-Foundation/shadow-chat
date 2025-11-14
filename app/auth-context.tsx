@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  AppsExternalUser,
+  isErrorCode,
+  SdkErrors,
+} from "@tonomy/tonomy-id-sdk";
 import React, {
   createContext,
   useCallback,
@@ -25,20 +30,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [loggedIn, _setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    try {
-      const v =
-        typeof window !== "undefined"
-          ? window.localStorage.getItem(STORAGE_KEY)
-          : null;
-      _setLoggedIn(!!v);
-    } catch {
-      _setLoggedIn(false);
-    } finally {
-      setReady(true);
-    }
-  }, []);
-
   const setLoggedIn = useCallback((v: boolean) => {
     _setLoggedIn(v);
     try {
@@ -53,6 +44,53 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(() => setLoggedIn(true), [setLoggedIn]);
   const logout = useCallback(() => setLoggedIn(false), [setLoggedIn]);
+
+  // On load, check current session with Tonomy SDK and set auth state accordingly
+  useEffect(() => {
+    let cancelled = false;
+
+    // prefill from localStorage for a snappier first paint
+    try {
+      const v =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem(STORAGE_KEY)
+          : null;
+      _setLoggedIn(!!v);
+    } catch {
+      _setLoggedIn(false);
+    }
+
+    const initializeOnStart = async () => {
+      try {
+        const user = await AppsExternalUser.getUser({ autoLogout: false });
+        if (cancelled) return;
+        if (user) {
+          login();
+        } else {
+          logout();
+        }
+      } catch (e) {
+        if (
+          isErrorCode(e, [
+            SdkErrors.AccountNotFound,
+            SdkErrors.AccountDoesntExist,
+            SdkErrors.UserNotLoggedIn,
+          ])
+        ) {
+          logout();
+        } else {
+          console.error(e);
+        }
+      } finally {
+        if (!cancelled) setReady(true);
+      }
+    };
+
+    initializeOnStart();
+    return () => {
+      cancelled = true;
+    };
+  }, [login, logout]);
 
   const value = useMemo(
     () => ({ ready, loggedIn, login, logout, setLoggedIn }),

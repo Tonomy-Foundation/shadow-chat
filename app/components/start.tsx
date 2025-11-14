@@ -1,64 +1,21 @@
 "use client";
 
 import React, { useEffect } from "react";
-import {
-  AppsExternalUser,
-  isErrorCode,
-  SdkErrors,
-} from "@tonomy/tonomy-id-sdk";
-// import settings from "../../common/settings";
+import { AppsExternalUser } from "@tonomy/tonomy-id-sdk";
 import "./start.scss";
-// import { useNavigate } from "react-router-dom";
-// import useErrorStore from "../../common/stores/errorStore";
-// import { AuthContext } from "../../tonomyAppList/providers/AuthProvider";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../auth-context";
-import "../tonomy-settings";
+// import { useRouter } from "next/navigation";
+// import { useAuth } from "../auth-context";
 
 export default function Start() {
-  const router = useRouter();
-  const { loggedIn } = useAuth();
-  useEffect(() => {
-    if (loggedIn) {
-      // Already logged in, send to home
-      router.replace("/");
-    }
-  }, [loggedIn, router]);
-  // const { signin } = useContext(AuthContext);
-  // const [loading, setLoading] = useState(true);
-  // const navigation = useNavigate();
-  // const errorStore = useErrorStore();
-
-  // async function onRender() {
-  //     try {
-  //         const user = await AppsExternalUser.getUser({ autoLogout: false });
-  //         if (user) {
-  //             signin(user, "bankless/swap");
-  //         }
-
-  //         setLoading(false);
-  //     } catch (e) {
-  //         if (
-  //             isErrorCode(e, [
-  //                 SdkErrors.AccountNotFound,
-  //                 SdkErrors.AccountDoesntExist,
-  //                 SdkErrors.UserNotLoggedIn,
-  //             ])
-  //         ) {
-  //             // User not logged in
-  //             setLoading(false);
-  //             navigation("/bankless");
-  //             return;
-  //         }
-
-  //         errorStore.setError({ error: e, expected: false });
-  //     }
-  // }
-
+  // const router = useRouter();
+  // const { login, logout } = useAuth();
   // useEffect(() => {
-  //     onRender();
-  // }, []);
+  //   if (loggedIn) {
+  //     // Already logged in, send to home
+  //     router.replace("/");
+  //   }
+  // }, [loggedIn, router]);
 
   async function onButtonPress() {
     AppsExternalUser.loginWithTonomy({
