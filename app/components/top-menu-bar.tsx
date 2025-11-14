@@ -5,7 +5,7 @@ import ArrowForwardIcon from "../icons/ArrowForward.svg";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 import "./top-menu-bar.scss";
 import LogoutIcon from "../icons/Logout.svg";
-import KeyboardArrowDownIcon from "../icons/KeyboardArrawDown.svg";
+import KeyboardArrowDownIcon from "../icons/KeyboardArrowDown.svg";
 import KeyboardArrowUpIcon from "../icons/KeyboardArrowUp.svg";
 import AppSwitcherIcon from "../icons/app-switcher.png";
 import AppSwitcher from "./app-switcher";

@@ -41,16 +41,14 @@ export default function Start() {
         </div>
         <div className="text-center">
           <p className="demo-head">Tonomy Shadow Chat</p>
-          <p className="demo-secondary">A research lab project.</p>
-          <p className="demo-main">Your sovereign AI assistant.</p>
+          <p className="demo-secondary">A research lab project</p>
           <p className="demo-main">
-            No prompts or responses are ever sent to external servers,
-            guaranteeing your privacy.
+            AI that lives in your browser, not in the cloud
           </p>
 
           <button className="console-login-button" onClick={onButtonPress}>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <span>Login with Tonomy ID</span>
+              <span>Try Locally</span>
             </div>
           </button>
         </div>

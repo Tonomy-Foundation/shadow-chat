@@ -69,6 +69,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       _setLoggedIn(!!v);
     } catch {
       _setLoggedIn(false);
+    } finally {
+      setReady(true);
     }
 
     const initializeOnStart = async () => {

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 import { useAuth } from "../auth-context";
+import LoadingIcon from "../icons/three-dots.svg";
 
 export default function Callback() {
   const router = useRouter();
@@ -36,5 +37,16 @@ export default function Callback() {
     };
   }, [login, logout, router]);
 
-  return <div>Redirecting...</div>;
+  return (
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <LoadingIcon />
+    </div>
+  );
 }
