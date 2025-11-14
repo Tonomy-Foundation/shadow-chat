@@ -13,9 +13,10 @@ import React, {
 type AuthContextValue = {
   ready: boolean;
   loggedIn: boolean;
-  login: () => void;
+  login: (user: ExternalUser) => void;
   logout: () => void;
   setLoggedIn: (v: boolean) => void;
+  user?: ExternalUser;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -25,6 +26,7 @@ const STORAGE_KEY = "tonomy:loggedIn";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [loggedIn, _setLoggedIn] = useState(false);
+  const [user, setUser] = useState<ExternalUser | undefined>(undefined);
 
   const setLoggedIn = useCallback((v: boolean) => {
     _setLoggedIn(v);
@@ -38,8 +40,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = useCallback(() => setLoggedIn(true), [setLoggedIn]);
-  const logout = useCallback(() => setLoggedIn(false), [setLoggedIn]);
+  const login = useCallback(
+    (user: ExternalUser) => {
+      setUser(user);
+      setLoggedIn(true);
+    },
+    [setLoggedIn],
+  );
+  const logout = useCallback(() => {
+    if (user) {
+      user.logout();
+    }
+    setUser(undefined);
+    setLoggedIn(false);
+  }, [setLoggedIn, user]);
 
   // On load, check current session with Tonomy SDK and set auth state accordingly
   useEffect(() => {
@@ -61,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const user = await ExternalUser.getUser({ autoLogout: false });
         if (cancelled) return;
         if (user) {
-          login();
+          login(user);
         } else {
           logout();
         }
@@ -89,8 +103,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [login, logout]);
 
   const value = useMemo(
-    () => ({ ready, loggedIn, login, logout, setLoggedIn }),
-    [ready, loggedIn, login, logout, setLoggedIn],
+    () => ({ ready, loggedIn, login, logout, setLoggedIn, user }),
+    [ready, loggedIn, login, logout, setLoggedIn, user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

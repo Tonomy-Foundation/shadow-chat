@@ -16,7 +16,7 @@ export default function Callback() {
         const { user } = await ExternalUser.verifyLoginResponse();
         if (!cancelled) {
           if (user) {
-            login();
+            login(user);
           } else {
             logout();
           }
