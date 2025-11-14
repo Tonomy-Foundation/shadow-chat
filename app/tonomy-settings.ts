@@ -1,8 +1,10 @@
 "use client";
 
-import { setSettings } from "@tonomy/tonomy-id-sdk";
+import { setFetch, setSettings } from "@tonomy/tonomy-id-sdk";
 
-if (process.env.NEXT_PUBLIC_TONOMY_ENV === "production") {
+const origin = typeof window !== "undefined" ? window.location.origin : "/";
+
+if (origin === "https://chat.tonomy.io") {
   setSettings({
     blockchainUrl: "https://pangea.eosusa.io",
     ssoWebsiteOrigin: "https://accounts.tonomy.io",
@@ -17,3 +19,5 @@ if (process.env.NEXT_PUBLIC_TONOMY_ENV === "production") {
     currencySymbol: "TONO",
   });
 }
+
+setFetch(window.fetch.bind(window));

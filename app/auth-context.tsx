@@ -9,6 +9,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import "./tonomy-settings";
 
 type AuthContextValue = {
   ready: boolean;
