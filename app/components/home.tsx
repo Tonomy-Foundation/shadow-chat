@@ -7,6 +7,7 @@ import styles from "./home.module.scss";
 import log from "loglevel";
 import dynamic from "next/dynamic";
 import { useState, useEffect, useRef } from "react";
+import FirstRunModal from "./first-run-modal";
 import {
   HashRouter as Router,
   Routes,
@@ -339,6 +340,7 @@ export function Home() {
   const hasHydrated = useHasHydrated();
   const { webllm, isWebllmActive } = useWebLLM();
   const mlcllm = useMlcLLM();
+  const [showFirstRun, setShowFirstRun] = useState(false);
 
   useSwitchTheme();
   useHtmlLang();
@@ -346,6 +348,18 @@ export function Home() {
   useStopStreamingMessages();
   useModels(mlcllm);
   useLogLevel(webllm);
+
+  useEffect(() => {
+    // Show first-run message once per device/browser
+    try {
+      const key = "shadow-chat:first-run-shown";
+      const seen =
+        typeof window !== "undefined" ? localStorage.getItem(key) : "1";
+      if (!seen) setShowFirstRun(true);
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
 
   if (!hasHydrated || !webllm || !isWebllmActive) {
     return <Loading />;
@@ -357,6 +371,18 @@ export function Home() {
 
   return (
     <ErrorBoundary>
+      {showFirstRun && (
+        <FirstRunModal
+          onClose={() => {
+            try {
+              if (typeof window !== "undefined") {
+                localStorage.setItem("shadow-chat:first-run-shown", "1");
+              }
+            } catch {}
+            setShowFirstRun(false);
+          }}
+        />
+      )}
       <Router>
         <WebLLMContext.Provider value={webllm}>
           <MLCLLMContext.Provider value={mlcllm}>

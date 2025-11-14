@@ -20,4 +20,6 @@ if (origin === "https://chat.tonomy.io") {
   });
 }
 
-setFetch(window.fetch.bind(window));
+if (typeof window !== "undefined") {
+  setFetch(window.fetch.bind(window));
+}
