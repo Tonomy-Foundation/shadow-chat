@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 import "./start.scss";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 // import { useRouter } from "next/navigation";
@@ -19,6 +18,7 @@ export default function Start() {
 
   async function onButtonPress() {
     try {
+      const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
       ExternalUser.loginWithTonomy({
         callbackPath: "/callback",
         dataRequest: { username: true },

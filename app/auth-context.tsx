@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalUser, isErrorCode, SdkErrors } from "@tonomy/tonomy-id-sdk";
+import type { ExternalUser as ExternalUserType } from "@tonomy/tonomy-id-sdk";
 import React, {
   createContext,
   useCallback,
@@ -9,15 +9,15 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import "./tonomy-settings";
+import { initTonomySettings } from "./tonomy-settings";
 
 type AuthContextValue = {
   ready: boolean;
   loggedIn: boolean;
-  login: (user: ExternalUser) => void;
+  login: (user: ExternalUserType) => void;
   logout: () => void;
   setLoggedIn: (v: boolean) => void;
-  user?: ExternalUser;
+  user?: ExternalUserType;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -27,7 +27,7 @@ const STORAGE_KEY = "tonomy:loggedIn";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [loggedIn, _setLoggedIn] = useState(false);
-  const [user, setUser] = useState<ExternalUser | undefined>(undefined);
+  const [user, setUser] = useState<ExternalUserType | undefined>(undefined);
 
   const setLoggedIn = useCallback((v: boolean) => {
     _setLoggedIn(v);
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = useCallback(
-    (user: ExternalUser) => {
+    (user: ExternalUserType) => {
       setUser(user);
       setLoggedIn(true);
     },
@@ -75,6 +75,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initializeOnStart = async () => {
       try {
+        await initTonomySettings();
+        const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
         const user = await ExternalUser.getUser({ autoLogout: false });
         if (cancelled) return;
         if (user) {
@@ -83,16 +85,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           logout();
         }
       } catch (e) {
-        if (
-          isErrorCode(e, [
-            SdkErrors.AccountNotFound,
-            SdkErrors.AccountDoesntExist,
-            SdkErrors.UserNotLoggedIn,
-          ])
-        ) {
-          logout();
-        } else {
-          console.error("initializeOnStart() error:", e);
+        try {
+          const { isErrorCode, SdkErrors } = await import(
+            "@tonomy/tonomy-id-sdk"
+          );
+          if (
+            isErrorCode(e, [
+              SdkErrors.AccountNotFound,
+              SdkErrors.AccountDoesntExist,
+              SdkErrors.UserNotLoggedIn,
+            ])
+          ) {
+            logout();
+          } else {
+            console.error("initializeOnStart() error:", e);
+          }
+        } catch {
+          console.error("initializeOnStart() secondary error:", e);
         }
       } finally {
         if (!cancelled) setReady(true);

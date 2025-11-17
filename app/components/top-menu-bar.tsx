@@ -10,7 +10,6 @@ import KeyboardArrowUpIcon from "../icons/KeyboardArrowUp.svg";
 import AppSwitcherIcon from "../icons/app-switcher.png";
 import AppSwitcher from "./app-switcher";
 import Debug from "debug";
-import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 import { useAuth } from "../auth-context";
 const debug = Debug("tonomy-app-websites:accounts:pages:Login");
 
@@ -27,6 +26,7 @@ const TopMenuBar = () => {
 
   async function onButtonPress() {
     try {
+      const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
       ExternalUser.loginWithTonomy({
         callbackPath: "/callback",
         dataRequest: { username: true },
