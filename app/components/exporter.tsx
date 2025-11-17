@@ -22,8 +22,7 @@ import {
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import ShareIcon from "../icons/share.svg";
-import MlcIcon from "../icons/mlc.svg";
-import MlcIconPng from "../icons/mlc.png";
+import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
 
 import DownloadIcon from "../icons/download.svg";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -302,7 +301,12 @@ function ExportAvatar(props: { avatar: string }) {
   if (props.avatar === DEFAULT_TEMPLATE_AVATAR) {
     return (
       <div className="bot-avatar no-dark">
-        <MlcIcon />
+        <img
+          src={ShadowLogo.src}
+          alt="Tonomy Shadow Chat"
+          width={20}
+          height={20}
+        />
       </div>
     );
   }
@@ -391,7 +395,12 @@ export function ImagePreviewer(props: {
       >
         <div className={styles["chat-info"]}>
           <div className={styles["logo"] + " no-dark"}>
-            <MlcIcon />
+            <img
+              src={ShadowLogo.src}
+              alt="Tonomy Shadow Chat"
+              width={32}
+              height={32}
+            />
           </div>
 
           <div>

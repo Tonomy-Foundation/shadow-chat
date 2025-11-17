@@ -13,16 +13,16 @@ export const metadata: Metadata = {
   description:
     "Chat with AI large language models running natively in your browser. Enjoy private, server-free, seamless AI conversations.",
   keywords: [
-    "WebLLM",
+    "Tonomy Shadow Chat",
     "AI chat",
     "machine learning",
     "browser AI",
     "language model",
     "no server",
   ],
-  authors: [{ name: "WebLLM Team" }],
-  publisher: "WebLLM",
-  creator: "WebLLM",
+  authors: [{ name: "Tonomy Foundation" }],
+  publisher: "Tonomy Foundation",
+  creator: "Tonomy Foundation",
   robots: "index, follow",
   viewport: {
     width: "device-width",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Tonomy Shadow Chat Chat",
     images: [
       {
-        url: "https://chat.webllm.ai/mlc-logo.png",
+        url: "https://chat.tonomy.io/tonomy-shadow-chat.png",
         width: 360,
         height: 360,
         alt: "Tonomy Shadow Chat - Browser-based AI conversation",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "Tonomy Shadow Chat",
     description:
       "Chat with AI large language models running natively in your browser",
-    images: ["https://chat.webllm.ai/mlc-logo.png"],
+    images: ["https://chat.tonomy.io/tonomy-shadow-chat.png"],
   },
   alternates: {
     canonical: "https://chat.tonomy.io",
@@ -138,7 +138,7 @@ export default function RootLayout({
               operatingSystem: "Web Browser",
               creator: {
                 "@type": "Organization",
-                name: "WebLLM",
+                name: "Tonomy Shadow Chat",
               },
             }),
           }}

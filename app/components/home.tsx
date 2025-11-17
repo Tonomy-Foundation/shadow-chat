@@ -16,7 +16,8 @@ import {
 } from "react-router-dom";
 import { ServiceWorkerMLCEngine } from "@mlc-ai/web-llm";
 
-import MlcIcon from "../icons/mlc.svg";
+import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
+import Image from "next/image";
 import LoadingIcon from "../icons/three-dots.svg";
 
 import Locale from "../locales";
@@ -36,7 +37,12 @@ export function Loading(props: { noLogo?: boolean }) {
     <div className={styles["loading-content"] + " no-dark"}>
       {!props.noLogo && (
         <div className={styles["loading-content-logo"] + " no-dark mlc-icon"}>
-          <MlcIcon />
+          <Image
+            src={ShadowLogo}
+            alt="Tonomy Shadow Chat"
+            width={64}
+            height={64}
+          />
         </div>
       )}
       <LoadingIcon />

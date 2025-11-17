@@ -6,7 +6,8 @@ import EmojiPicker, {
 
 import { Model } from "../store";
 
-import MlcIcon from "../icons/mlc.svg";
+import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
+import Image from "next/image";
 
 export function getEmojiUrl(unified: string, style: EmojiStyle) {
   // Whoever owns this Content Delivery Network (CDN), I am using your CDN to serve emojis
@@ -35,7 +36,12 @@ export function Avatar(props: { model?: Model; avatar?: string }) {
   if (props.model) {
     return (
       <div className="bot-avatar mlc-icon no-dark">
-        <MlcIcon />
+        <Image
+          src={ShadowLogo}
+          alt="Tonomy Shadow Chat"
+          width={20}
+          height={20}
+        />
       </div>
     );
   }
