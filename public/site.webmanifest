@@ -1,6 +1,6 @@
 {
-  "name": "WebLLM Chat",
-  "short_name": "WebLLMChat",
+  "name": "Tonomy Shadow Chat",
+  "short_name": "TonomyChat",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -3,12 +3,12 @@
 # WebLLM Chat
 
 <a href="https://github.com/mlc-ai/web-llm"><img alt="Related Repository: WebLLM" src="https://img.shields.io/badge/Related_Repo-WebLLM-fafbfc?logo=github"></a>
-<a href="https://chat.webllm.ai"><img alt="Web App Deployed on GitHub Pages" src="https://img.shields.io/badge/Web_App-Deployed-32a852?logo=pwa"></a>
+<a href="https://chat.tonomy.io"><img alt="Web App Deployed on GitHub Pages" src="https://img.shields.io/badge/Web_App-Deployed-32a852?logo=pwa"></a>
 <a href="https://discord.gg/9Xpy2HGBuD"><img alt="Join Discord" src="https://img.shields.io/badge/Join-Discord-7289DA?logo=discord&logoColor=white"></a>
 
 **Private AI Conversations, Fully In-Browser.**
 
-[**Chat Now**](https://chat.webllm.ai/)
+[**Chat Now**](https://chat.tonomy.io/)
 
 [WebLLM Chat Demo Video](https://github.com/mlc-ai/web-llm-chat/assets/23090573/f700e27e-bb88-4068-bc8b-8a33ea5a4300)
 
@@ -42,7 +42,7 @@ WebLLM Chat supports custom language models through [MLC-LLM](https://llm.mlc.ai
 
 2. Host REST API through MLC-LLM by following [the instructions](https://llm.mlc.ai/docs/deploy/rest.html).
 
-3. Go to [WebLLM Chat](https://chat.webllm.ai/), select "Settings" in the side bar, then select "MLC-LLM REST API (Advanced)" as "Model Type" and type the REST API endpoint URL from step 2.
+3. Go to [WebLLM Chat](https://chat.tonomy.io/), select "Settings" in the side bar, then select "MLC-LLM REST API (Advanced)" as "Model Type" and type the REST API endpoint URL from step 2.
 
 ## Development
 
