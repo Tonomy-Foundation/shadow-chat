@@ -75,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initializeOnStart = async () => {
       try {
-        await initTonomySettings();
+        initTonomySettings();
         const user = await ExternalUser.getUser({ autoLogout: false });
         if (cancelled) return;
         if (user) {
