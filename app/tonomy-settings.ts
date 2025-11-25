@@ -1,11 +1,14 @@
 "use client";
 
+import { setFetch, setSettings } from "@tonomy/tonomy-id-sdk";
+
+let initialized = false;
 // Dynamic initializer to avoid evaluating @tonomy/tonomy-id-sdk during build/SSR.
 // Call this from a client-only effect before first SDK usage.
-export async function initTonomySettings() {
+export function initTonomySettings() {
+  if (initialized) return;
   // Only run in browser.
   if (typeof window === "undefined") return;
-  const { setFetch, setSettings } = await import("@tonomy/tonomy-id-sdk");
   const origin = window.location.origin;
   if (origin === "https://chat.tonomy.io") {
     setSettings({
@@ -23,6 +26,7 @@ export async function initTonomySettings() {
     });
   }
   setFetch(window.fetch.bind(window));
+  initialized = true;
 }
 
 // Optionally auto-run when directly imported (defensive), but since we removed

@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../auth-context";
 import LoadingIcon from "../icons/three-dots.svg";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
+import { initTonomySettings } from "../tonomy-settings";
 
 export default function Callback() {
   const router = useRouter();
@@ -11,27 +13,21 @@ export default function Callback() {
 
   useEffect(() => {
     let cancelled = false;
-    async function finalize() {
+    async function finalizeLogin() {
       try {
-        const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
+        initTonomySettings();
         const { user } = await ExternalUser.verifyLoginResponse();
         if (!cancelled) {
-          if (user) {
-            login(user);
-          } else {
-            logout();
-          }
+          login(user);
+          router.replace("/");
+        } else {
+          console.warn("Callback: login cancelled");
         }
       } catch (e) {
         console.error("Callback() error:", e);
-        if (!cancelled) {
-          logout();
-        }
-      } finally {
-        router.replace("/");
       }
     }
-    finalize();
+    finalizeLogin();
     return () => {
       cancelled = true;
     };
