@@ -1,25 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import "./start.scss";
 import ShadowLogo from "../icons/appSwitcherIcons/shadow.png";
-// import { useRouter } from "next/navigation";
-// import { useAuth } from "../auth-context";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 
 export default function Start() {
-  // const router = useRouter();
-  // const { login, logout } = useAuth();
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     // Already logged in, send to home
-  //     router.replace("/");
-  //   }
-  // }, [loggedIn, router]);
-
   async function onButtonPress() {
     try {
-      const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
-      ExternalUser.loginWithTonomy({
+      await ExternalUser.loginWithTonomy({
         callbackPath: "/callback",
         dataRequest: { username: true },
       });

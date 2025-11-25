@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../auth-context";
 import LoadingIcon from "../icons/three-dots.svg";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 
 export default function Callback() {
   const router = useRouter();
@@ -13,7 +14,6 @@ export default function Callback() {
     let cancelled = false;
     async function finalize() {
       try {
-        const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
         const { user } = await ExternalUser.verifyLoginResponse();
         if (!cancelled) {
           if (user) {

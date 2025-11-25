@@ -1,6 +1,6 @@
 "use client";
 
-import type { ExternalUser as ExternalUserType } from "@tonomy/tonomy-id-sdk";
+import { ExternalUser, isErrorCode, SdkErrors } from "@tonomy/tonomy-id-sdk";
 import React, {
   createContext,
   useCallback,
@@ -14,10 +14,10 @@ import { initTonomySettings } from "./tonomy-settings";
 type AuthContextValue = {
   ready: boolean;
   loggedIn: boolean;
-  login: (user: ExternalUserType) => void;
+  login: (user: ExternalUser) => void;
   logout: () => void;
   setLoggedIn: (v: boolean) => void;
-  user?: ExternalUserType;
+  user?: ExternalUser;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -27,7 +27,7 @@ const STORAGE_KEY = "tonomy:loggedIn";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [loggedIn, _setLoggedIn] = useState(false);
-  const [user, setUser] = useState<ExternalUserType | undefined>(undefined);
+  const [user, setUser] = useState<ExternalUser | undefined>(undefined);
 
   const setLoggedIn = useCallback((v: boolean) => {
     _setLoggedIn(v);
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = useCallback(
-    (user: ExternalUserType) => {
+    (user: ExternalUser) => {
       setUser(user);
       setLoggedIn(true);
     },
@@ -76,7 +76,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initializeOnStart = async () => {
       try {
         await initTonomySettings();
-        const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
         const user = await ExternalUser.getUser({ autoLogout: false });
         if (cancelled) return;
         if (user) {
@@ -86,9 +85,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       } catch (e) {
         try {
-          const { isErrorCode, SdkErrors } = await import(
-            "@tonomy/tonomy-id-sdk"
-          );
           if (
             isErrorCode(e, [
               SdkErrors.AccountNotFound,

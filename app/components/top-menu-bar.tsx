@@ -11,6 +11,7 @@ import AppSwitcherIcon from "../icons/app-switcher.png";
 import AppSwitcher from "./app-switcher";
 import Debug from "debug";
 import { useAuth } from "../auth-context";
+import { ExternalUser } from "@tonomy/tonomy-id-sdk";
 const debug = Debug("tonomy-app-websites:accounts:pages:Login");
 
 const TopMenuBar = () => {
@@ -26,8 +27,7 @@ const TopMenuBar = () => {
 
   async function onButtonPress() {
     try {
-      const { ExternalUser } = await import("@tonomy/tonomy-id-sdk");
-      ExternalUser.loginWithTonomy({
+      await ExternalUser.loginWithTonomy({
         callbackPath: "/callback",
         dataRequest: { username: true },
       });
