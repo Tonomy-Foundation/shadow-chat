@@ -4,23 +4,25 @@ import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
+import TopMenuBar from "./components/top-menu-bar";
+import { AuthProvider } from "./auth-context";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chat.webllm.ai"),
-  title: "WebLLM Chat",
+  metadataBase: new URL("https://chat.tonomy.io"),
+  title: "Tonomy Shadow Chat",
   description:
     "Chat with AI large language models running natively in your browser. Enjoy private, server-free, seamless AI conversations.",
   keywords: [
-    "WebLLM",
+    "Tonomy Shadow Chat",
     "AI chat",
     "machine learning",
     "browser AI",
     "language model",
     "no server",
   ],
-  authors: [{ name: "WebLLM Team" }],
-  publisher: "WebLLM",
-  creator: "WebLLM",
+  authors: [{ name: "Tonomy Foundation" }],
+  publisher: "Tonomy Foundation",
+  creator: "Tonomy Foundation",
   robots: "index, follow",
   viewport: {
     width: "device-width",
@@ -32,34 +34,34 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "WebLLM Chat",
+    title: "Tonomy Shadow Chat",
     statusBarStyle: "default",
   },
   openGraph: {
     type: "website",
-    url: "https://chat.webllm.ai",
-    title: "WebLLM Chat",
+    url: "https://chat.tonomy.io",
+    title: "Tonomy Shadow Chat Chat",
     description:
       "Chat with AI large language models running natively in your browser",
-    siteName: "WebLLM Chat",
+    siteName: "Tonomy Shadow Chat Chat",
     images: [
       {
-        url: "https://chat.webllm.ai/mlc-logo.png",
+        url: "https://chat.tonomy.io/tonomy-shadow-chat.png",
         width: 360,
         height: 360,
-        alt: "WebLLM Chat - Browser-based AI conversation",
+        alt: "Tonomy Shadow Chat - Browser-based AI conversation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "WebLLM Chat",
+    title: "Tonomy Shadow Chat",
     description:
       "Chat with AI large language models running natively in your browser",
-    images: ["https://chat.webllm.ai/mlc-logo.png"],
+    images: ["https://chat.tonomy.io/tonomy-shadow-chat.png"],
   },
   alternates: {
-    canonical: "https://chat.webllm.ai",
+    canonical: "https://chat.tonomy.io",
   },
 };
 
@@ -123,8 +125,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: "WebLLM Chat",
-              url: "https://chat.webllm.ai",
+              name: "Tonomy Shadow Chat",
+              url: "https://chat.tonomy.io",
               description:
                 "Chat with AI large language models running natively in your browser. Enjoy private, server-free, seamless AI conversations.",
               applicationCategory: "Artificial Intelligence",
@@ -136,13 +138,26 @@ export default function RootLayout({
               operatingSystem: "Web Browser",
               creator: {
                 "@type": "Organization",
-                name: "WebLLM",
+                name: "Tonomy Shadow Chat",
               },
             }),
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100vh",
+            }}
+          >
+            <TopMenuBar />
+            <div style={{ flex: 1 }}>{children}</div>
+          </div>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

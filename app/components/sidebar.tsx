@@ -164,7 +164,7 @@ export function SideBar(props: { className?: string }) {
         transition: isMobileScreen && isIOSMobile ? "none" : undefined,
       }}
     >
-      <div className={styles["sidebar-header"]}>
+      {/* <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title-container"]}>
           <div className={styles["sidebar-title"]}>{Locale.Title}</div>
           <div className={styles["sidebar-sub-title"]}>{Locale.Subtitle}</div>
@@ -172,7 +172,7 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-logo"] + " no-dark mlc-icon"}>
           <MlcIcon />
         </div>
-      </div>
+      </div> */}
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton
@@ -218,17 +218,17 @@ export function SideBar(props: { className?: string }) {
               }}
             />
           </div>
-          <div className={styles["sidebar-action"]}>
+          {/* <div className={styles["sidebar-action"]}>
             <a href={WEBLLM_HOME_URL} target="_blank" rel="noopener noreferrer">
               <IconButton icon={<InternetIcon />} shadow />
             </a>
-          </div>
-          <div className={styles["sidebar-action"]}>
+          </div> */}
+          {/* <div className={styles["sidebar-action"]}>
             <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
               <IconButton icon={<GithubIcon />} shadow />
             </a>
-          </div>
-          <div className={styles["sidebar-action"]}>
+          </div> */}
+          {/* <div className={styles["sidebar-action"]}>
             <IconButton
               icon={
                 <>
@@ -244,7 +244,7 @@ export function SideBar(props: { className?: string }) {
               onClick={nextTheme}
               shadow
             />
-          </div>
+          </div> */}
         </div>
         <div>
           <IconButton

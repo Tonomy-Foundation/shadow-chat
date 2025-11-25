@@ -5,24 +5,24 @@
   --theme: light;
 
   /* color */
-  --white: white;
-  --black: rgb(48, 48, 48);
-  --gray: rgb(240, 240, 240);
-  --light-gray: rgb(120, 120, 120);
-  --primary: rgb(90, 96, 135);
-  --second: rgb(228, 229, 241);
-  --hover-color: #f3f3f3;
-  --bar-color: rgba(0, 0, 0, 0.1);
+  --white: #FFFFFF;
+  --black: #09031A;
+  --gray: #F5F4F7;
+  --light-gray: rgba(31, 26, 45, 0.5);
+  --primary: #5833BC;
+  --second: #F9F8FB;
+  --hover-color: rgba(213, 84, 239, 0.1);
+  --bar-color: rgba(88, 51, 188, 0.1);
   --theme-color: var(--gray);
-  --mlc-icon-color: rgb(6, 37, 120);
+  --mlc-icon-color: #5833BC;
 
   /* shadow */
-  --shadow: 50px 50px 100px 10px rgb(0, 0, 0, 0.1);
-  --card-shadow: 0px 2px 4px 0px rgb(0, 0, 0, 0.05);
+  --shadow: 50px 50px 100px 10px rgba(9, 3, 26, 0.1);
+  --card-shadow: 0px 2px 4px 0px rgba(9, 3, 26, 0.05);
 
   /* stroke */
-  --border-in-light: 1px solid rgb(222, 222, 222);
-  --border-in-dark: 1px solid rgb(136, 136, 136);
+  --border-in-light: 1px solid rgba(88, 51, 188, 0.2);
+  --border-in-dark: 1px solid rgba(88, 51, 188, 0.4);
 }
 
 @mixin dark {
@@ -108,12 +108,11 @@ body {
   padding: 0;
   height: var(--full-height);
   width: 100vw;
-  display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
   touch-action: pan-x pan-y;
-  overflow: hidden;
+  overflow-x: hidden;
 
   @media only screen and (max-width: 600px) {
     background-color: var(--second);
