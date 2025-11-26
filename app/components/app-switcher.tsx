@@ -30,7 +30,7 @@ const availableApps = [
     link: "https://explorer.tonomy.io",
   },
   { name: "Demo", icon: DemoIcon, link: "https://demo.tonomy.io" },
-  { name: "Fiddle.art", icon: FiddleArtIcon, link: "https://fiddl.art" },
+  { name: "Fiddl.art", icon: FiddleArtIcon, link: "https://fiddl.art" },
 ];
 
 const comingSoonApps = [
